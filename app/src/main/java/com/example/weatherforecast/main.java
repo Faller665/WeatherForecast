@@ -26,7 +26,12 @@ import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-
+/**
+ * @Author      : 苟云东
+ * @Email       : 2191288460@qq.com
+ * @Date        : on 2022-1-21
+ * @Description :简单实现了对天气的呈现
+ */
 public class main extends AppCompatActivity {
 
     private TextView tem;

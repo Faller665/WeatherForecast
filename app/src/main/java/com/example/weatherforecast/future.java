@@ -22,7 +22,12 @@ import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-
+/**
+ * @Author      : 苟云东
+ * @Email       : 2191288460@qq.com
+ * @Date        : on 2022-2-1
+ * @Description :简单实现了对天气的预测
+ */
 public class future extends AppCompatActivity {
     private ArrayList<data> dataArrayList;
     private RecyclerView recyclerView;
