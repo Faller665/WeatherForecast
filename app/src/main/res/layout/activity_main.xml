@@ -33,13 +33,25 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.036" />
 
+    <TextView
+        android:id="@+id/tv_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.054" />
+
     <Button
         android:id="@+id/bt_future"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/shape_rectangle"
-        android:text="查看近15日天气"
+        android:text="查看近7日天气"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.405"
@@ -126,7 +138,8 @@
         android:id="@+id/cardView"
         android:layout_width="200dp"
         android:layout_height="90dp"
-        app:cardBackgroundColor="#F0F8FF"
+        app:cardBackgroundColor="#B0E2FF"
+        app:cardCornerRadius="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -153,6 +166,8 @@
     <androidx.cardview.widget.CardView
         android:layout_width="200dp"
         android:layout_height="90dp"
+        app:cardCornerRadius="30dp"
+        app:cardBackgroundColor="#B0E2FF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -165,7 +180,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="ddd"
             android:textSize="10dp" />
 
         <ImageView
@@ -178,6 +192,8 @@
     <androidx.cardview.widget.CardView
         android:layout_width="200dp"
         android:layout_height="90dp"
+        app:cardCornerRadius="30dp"
+        app:cardBackgroundColor="#B0E2FF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -202,6 +218,8 @@
     <androidx.cardview.widget.CardView
         android:layout_width="200dp"
         android:layout_height="90dp"
+        app:cardCornerRadius="30dp"
+        app:cardBackgroundColor="#B0E2FF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -226,6 +244,8 @@
     <androidx.cardview.widget.CardView
         android:layout_width="200dp"
         android:layout_height="90dp"
+        app:cardCornerRadius="30dp"
+        app:cardBackgroundColor="#B0E2FF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"

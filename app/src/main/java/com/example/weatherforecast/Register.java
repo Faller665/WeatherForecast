@@ -82,12 +82,26 @@ public class Register extends AppCompatActivity {
                             @Override
                             public void run() {
                                 if(errorCode==0){
+
                                     Intent intent=new Intent(Register.this,Login.class);
                                     startActivity(intent);
-                                    Toast.makeText(Register.this, "注册成功", Toast.LENGTH_SHORT).show();
+                                    overridePendingTransition(R.anim.inter1,R.anim.out1);
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(Register.this, "注册成功", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+
                                 }
                                 else{
-                                    Toast.makeText(Register.this, "该账号已被注册", Toast.LENGTH_SHORT).show();
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(Register.this, "该账号已被注册", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+
                                 }
                             }
                         });

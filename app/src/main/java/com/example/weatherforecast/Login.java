@@ -40,18 +40,22 @@ public class Login extends AppCompatActivity {
     private String Password;
     private Button login;
     private Button register;
+    private String location;
+    private EditText et_location;
+    private ImageView iv_location;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         initView();
-        Glide.with(Login.this).load(R.drawable.login).into(background1);
+        Glide.with(Login.this).load(R.drawable.main).into(background1);
         front();
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 UserName=name.getText().toString();
                 Password=password.getText().toString();
+                location=et_location.getText().toString();
                 login();
             }
         });
@@ -60,6 +64,7 @@ public class Login extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(Login.this,Register.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.inter1,R.anim.out1);
             }
         });
     }
@@ -72,6 +77,8 @@ public class Login extends AppCompatActivity {
         password1=findViewById(R.id.imageView2);
         login=findViewById(R.id.Bt_login);
         register=findViewById(R.id.Bt_register);
+        et_location=findViewById(R.id.et_location);
+        iv_location=findViewById(R.id.iv_location);
     }
 //    将控件置于最上层
     private void front(){
@@ -79,6 +86,8 @@ public class Login extends AppCompatActivity {
         password1.bringToFront();
         name.bringToFront();
         password.bringToFront();
+        et_location.bringToFront();
+        iv_location.bringToFront();
     }
 
     private void login(){
@@ -95,7 +104,13 @@ public class Login extends AppCompatActivity {
             call.enqueue(new Callback() {
                 @Override
                 public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                    Toast.makeText(Login.this, "没有注册", Toast.LENGTH_SHORT).show();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(Login.this, "没有注册", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
                 }
 
                 @Override
@@ -110,10 +125,19 @@ public class Login extends AppCompatActivity {
                             public void run() {
                                 if(errorCode==0){
                                     Intent intent=new Intent(Login.this,main.class);
+                                    intent.putExtra("location",location);
                                     startActivity(intent);
+                                    overridePendingTransition(R.anim.inter1,R.anim.out1);
+
                                 }
                                 else{
-                                    Toast.makeText(Login.this, "账号或者密码不匹配或者该账号未注册", Toast.LENGTH_SHORT).show();
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(Login.this, "账号或者密码不匹配或者该账号未注册", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+
                                 }
                             }
                         });

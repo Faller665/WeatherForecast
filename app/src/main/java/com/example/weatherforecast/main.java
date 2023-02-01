@@ -3,8 +3,11 @@ package com.example.weatherforecast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,15 +48,29 @@ public class main extends AppCompatActivity {
     private TextView textView3;
     private TextView textView4;
     private TextView textView5;
+    private Button future11;
+private TextView tv_city;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
+        Intent intent=getIntent();
+        String location=intent.getStringExtra("location");
         Glide.with(main.this).load(R.drawable.login).into(background);
+        tv_city.setText(location);
         front();
-        getAndHandleData2();
+        getAndHandleData(location);
+        future11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1=new Intent(main.this,future.class);
+                intent1.putExtra("location",location);
+                startActivity(intent1);
+                overridePendingTransition(R.anim.inter2,R.anim.out2);
+            }
+        });
     }
 private void initView(){
         tem=findViewById(R.id.tv_tem);
@@ -69,6 +86,8 @@ private void initView(){
          city=findViewById(R.id.imageView5);
          imageView_wind=findViewById(R.id.imageView6);
          imageView_air=findViewById(R.id.imageView4);
+    future11=findViewById(R.id.bt_future);
+    tv_city=findViewById(R.id.tv_city);
 }
 private void front(){
         tem.bringToFront();
@@ -78,46 +97,13 @@ private void front(){
         city.bringToFront();
         imageView_air.bringToFront();
         imageView_wind.bringToFront();
+        tv_city.bringToFront();
 }
-    private void getAndHandleData(){
-        OkHttpClient client=new OkHttpClient();
-        HttpUrl.Builder builder=HttpUrl.parse("https://v2.alapi.cn/api/weather/forecast").newBuilder();
-        builder.addQueryParameter("location","重庆");
-        Request request=new Request.Builder()
-                .url(builder.build())
-                .addHeader("token","RAOQHDgr4TZmvLkl")
-                .build();
-        Call call= client.newCall(request);
-        call.enqueue(new Callback() {
-            @Override
-            public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                Toast.makeText(main.this, "请求失败", Toast.LENGTH_SHORT).show();
-            }
 
-            @Override
-            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                weatherJson=response.body().string();
-                try {
-                    JSONObject jsonObject=new JSONObject(weatherJson);
-                    JSONObject data=jsonObject.getJSONObject("data");
-                    JSONArray daily_forecast=data.getJSONArray("daily_forecast");
-                    for (int i = 0; i < 1; i++) {
-                        JSONObject today=daily_forecast.getJSONObject(i);
-                        tep_max=today.getInt("tmp_max");
-                        tep_min=today.getInt("tmp_min");
-                        weather=today.getString("cond_txt_d");
-                    }
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-    private void getAndHandleData2(){
+    private void getAndHandleData(String item){
         OkHttpClient client=new OkHttpClient();
         HttpUrl.Builder builder=HttpUrl.parse("https://v2.alapi.cn/api/tianqi").newBuilder();
-        builder.addQueryParameter("city","重庆");
+        builder.addQueryParameter("city",item);
         Request request=new Request.Builder()
                 .url(builder.build())
                 .addHeader("token","RAOQHDgr4TZmvLkl")
