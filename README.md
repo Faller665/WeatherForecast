@@ -1,2 +1,7 @@
-
-<img src="https://user-images.githubusercontent.com/119687323/216023067-f8bce8ff-9bd6-438c-83fb-91792b82bd22.jpg" width="100px">
+# App的介绍
+## App的功能
+1.该App的主要功能是对当天的天气和一些温馨提示和对近7天的天气情况进行一个呈现
+## 主要功能的实现
+2.首先使用网络请求得到当天的天气信息和温馨提示，然后再用cardview将温馨提示呈现出来，对近7天的天气情况的呈现则使用的是recyclerview.在界面的跳转方面，我直接编写了不同的跳转动画
+# App的展示
+![QQ视频20230201201838 00_00_00-00_00_30](https://user-images.githubusercontent.com/119687323/216045753-273328cd-5802-4685-9ded-76eb6cb8ed8f.gif)
